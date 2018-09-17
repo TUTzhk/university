@@ -1,0 +1,17 @@
+#Convert matrix size in mat file
+import os
+import scipy.io as sio
+import numpy as np
+
+data_dir = r"D:\mat"      #原mat文件所在的文件夹
+matdatas = os.listdir(data_dir)
+for matdata in matdatas:
+    print(matdata)
+    os.chdir("D:\mat")      #目录到原mat文件所在的文件夹
+    for n in range(700):
+        A = sio.loadmat(matdata)  #载入mat文件
+        B = A["aal"][:90,:90]   #将原矩阵进行切片
+        path = r"E:\Newmat"
+        Newpath = os.path.join(path,matdata)
+        sio.savemat(Newpath,{"aal":B})
+print("finish")
